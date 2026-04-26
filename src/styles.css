@@ -81,6 +81,11 @@
     border-color: var(--color-border);
   }
 
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
   html {
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -93,6 +98,11 @@
     font-size: 16px;
     line-height: 1.7;
     font-weight: 400;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 
   h1,
@@ -246,4 +256,35 @@
   /* Stat labels / small uppercase kickers stay small */
   .text-\[11px\] { font-size: 13px; }
   .text-\[10px\] { font-size: 11px; }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 767px) {
+  h1 {
+    font-size: 26px;
+    line-height: 1.25;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  body {
+    font-size: 15px;
+  }
+  .page-section {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  .container-narrow {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .cream-card {
+    padding: 22px;
+  }
+  /* Tighten timeline year column on small screens — already stacks single col,
+     but if any inline grid uses [120px_..] / [200px_..] templates, ensure clean wrap. */
+  .section-title {
+    font-size: 13px;
+    margin-bottom: 22px;
+  }
 }
