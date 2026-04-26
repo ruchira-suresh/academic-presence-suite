@@ -15,7 +15,13 @@ export function SiteNav() {
 
   return (
     <header className="sticky top-0 z-40 bg-white" style={{ borderBottom: "0.5px solid var(--border-subtle)" }}>
-      <div className="mx-auto flex max-w-6xl items-center justify-end px-6 py-5">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+        <Link
+          to="/"
+          style={{ color: "#0B1F3A", fontSize: 15, fontWeight: 500 }}
+        >
+          Dr. A. S. Suresh
+        </Link>
         {/* Desktop nav */}
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
