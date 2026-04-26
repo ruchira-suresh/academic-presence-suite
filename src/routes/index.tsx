@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import portrait from "@/assets/portrait.jpg";
+import portrait from "@/assets/suresh_photo_git.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -119,7 +119,7 @@ function HomePage() {
                 consumer behaviour, retail strategy, and AI-driven marketing.
               </p>
               <div className="mt-8">
-                <Link to="/mentorship" className="btn-navy">
+                <Link to="/mentorship" className="btn-navy w-full md:w-auto">
                   Book a Mentorship Session
                 </Link>
               </div>
