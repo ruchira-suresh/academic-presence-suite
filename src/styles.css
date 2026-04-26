@@ -81,6 +81,11 @@
     border-color: var(--color-border);
   }
 
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
   html {
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -93,6 +98,11 @@
     font-size: 16px;
     line-height: 1.7;
     font-weight: 400;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 
   h1,
