@@ -3,93 +3,236 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/research")({
   head: () => ({
     meta: [
-      { title: "Research — Dr. A. S. Suresh Iyer" },
-      { name: "description", content: "Research interests, publications, book chapters and conference contributions." },
-      { property: "og:title", content: "Research — Dr. A. S. Suresh Iyer" },
-      { property: "og:description", content: "Publications, book chapters and conference contributions." },
+      { title: "Research — Dr. A. S. Suresh" },
+      {
+        name: "description",
+        content:
+          "Research across consumer behaviour, retail management, digital marketing and sustainability. 45+ publications, 206+ citations, h-index 7.",
+      },
+      { property: "og:title", content: "Research — Dr. A. S. Suresh" },
+      {
+        property: "og:description",
+        content:
+          "45+ publications across consumer behaviour, retail, digital marketing and sustainability.",
+      },
     ],
   }),
   component: ResearchPage,
 });
 
-const interests = [
-  "Strategic management and organisational change",
-  "Leadership and organisational behaviour",
-  "Higher education and pedagogy",
-  "Qualitative and mixed-methods research",
+type Pub = {
+  authors: string;
+  year: string;
+  title: string;
+  venue: string;
+  tags: string[];
+};
+
+const themes: { heading: string; bg: "white" | "cream"; pubs: Pub[] }[] = [
+  {
+    heading: "Consumer Behaviour and Decision Science",
+    bg: "white",
+    pubs: [
+      {
+        authors: "Suresh and Biswas",
+        year: "2020",
+        title: "Internet addiction and compulsive buying behaviour",
+        venue: "Global Business Review",
+        tags: ["Scopus", "Web of Science", "ABDC-C"],
+      },
+      {
+        authors: "Suresh and Balaji",
+        year: "2021",
+        title: "Instagram influencer likeability and buying intention toward cosmetic products",
+        venue: "Indian Journal of Ecology",
+        tags: ["Scopus"],
+      },
+      {
+        authors: "Suresh and Sharma",
+        year: "2021",
+        title: "Luxury brand consumption and consumer purchase intentions",
+        venue: "Indian Journal of Ecology",
+        tags: ["Scopus"],
+      },
+      {
+        authors: "Suresh and Ramanathan",
+        year: "2021",
+        title: "M-commerce and purchase intention during COVID-19",
+        venue: "Indian Journal of Ecology",
+        tags: ["Scopus"],
+      },
+    ],
+  },
+  {
+    heading: "Retail Management and Marketing Strategy",
+    bg: "cream",
+    pubs: [
+      {
+        authors: "Suresh, Vasudevan and Vinod",
+        year: "2021",
+        title: "Factors influencing intermediaries in consumer healthcare supply chains",
+        venue: "Journal of Distribution Science",
+        tags: ["Scopus"],
+      },
+      {
+        authors: "Suresh and Soni",
+        year: "2025",
+        title: "Consumer-centric innovation in smart retail AR, VR and Industry 4.0",
+        venue: "IGI Global",
+        tags: ["Scopus"],
+      },
+      {
+        authors: "Suresh",
+        year: "2019",
+        title: "A Study on the Value Chain of Domestic Multi-Brand Retail",
+        venue: "GRIN Verlag, Munich",
+        tags: ["Book"],
+      },
+    ],
+  },
+  {
+    heading: "Digital Marketing and AI",
+    bg: "white",
+    pubs: [
+      {
+        authors: "Kumar, Vihari, Yadav, Suresh et al.",
+        year: "2024",
+        title: "Mapping AI-driven marketing: review and future directions",
+        venue: "Artificial Intelligence Journal",
+        tags: ["Scopus"],
+      },
+      {
+        authors: "Suresh, Vasa, Sharma and Mahajan",
+        year: "2024",
+        title: "Service adoption using the SERVQUAL paradigm in self-drive rental",
+        venue: "Innovative Marketing",
+        tags: ["Scopus"],
+      },
+      {
+        authors: "Tiwari, Kumar, Suresh and Sharma",
+        year: "2024",
+        title: "Balancing work and life in academia",
+        venue: "Emerald Insight Journal",
+        tags: ["Scopus", "ABDC-B"],
+      },
+    ],
+  },
+  {
+    heading: "Sustainability and Ethics",
+    bg: "cream",
+    pubs: [
+      {
+        authors: "Chakraborty, Suresh et al.",
+        year: "2025",
+        title: "Sustainability in hospitality: bibliometric synthesis",
+        venue: "Advances in Consumer Research",
+        tags: ["Scopus", "ABDC-B"],
+      },
+      {
+        authors: "Balaji and Suresh",
+        year: "2021",
+        title: "Consumer perception and attitude toward organic food in India",
+        venue: "Indian Journal of Ecology",
+        tags: ["Scopus"],
+      },
+      {
+        authors: "Chakraborty, Suresh et al.",
+        year: "2025",
+        title: "Brand trendiness, emotional identity and behavioural loyalty in Indian fashion",
+        venue: "Journal of Asia Entrepreneurship and Sustainability",
+        tags: ["ABDC-C"],
+      },
+    ],
+  },
 ];
 
-const publications = [
-  { type: "Journal Article", title: "Reflections on management pedagogy in Indian higher education", venue: "Peer-reviewed journal" },
-  { type: "Journal Article", title: "Organisational behaviour in cross-cultural settings", venue: "Peer-reviewed journal" },
-  { type: "Book Chapter", title: "Leadership development frameworks: a critical review", venue: "Edited volume" },
-  { type: "Conference Paper", title: "Doctoral supervision practices: lessons from a decade of mentoring", venue: "International conference" },
-  { type: "Working Paper", title: "Pedagogy, practice and policy in management education", venue: "Working paper series" },
-];
+function PubCard({ pub }: { pub: Pub }) {
+  return (
+    <article
+      className="p-6"
+      style={{
+        backgroundColor: "var(--white, #ffffff)",
+        border: "0.5px solid var(--border-subtle)",
+      }}
+    >
+      <div className="flex flex-wrap items-center gap-2">
+        <span
+          className="text-[11px] font-semibold uppercase tracking-[0.14em]"
+          style={{ color: "var(--navy)" }}
+        >
+          {pub.year}
+        </span>
+        {pub.tags.map((t) => (
+          <span
+            key={t}
+            className="px-2 py-[3px] text-[10px] font-medium uppercase tracking-[0.12em]"
+            style={{ color: "var(--navy)", border: "0.5px solid var(--navy)" }}
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+      <h3 className="mt-4 text-[15px] leading-snug">{pub.title}</h3>
+      <p className="mt-3 text-[12px]" style={{ color: "var(--charcoal, #555)" }}>
+        {pub.authors}
+      </p>
+      <p className="mt-1 text-[12px] italic" style={{ color: "var(--muted-foreground)" }}>
+        {pub.venue}
+      </p>
+    </article>
+  );
+}
 
 function ResearchPage() {
   return (
     <>
+      {/* Hero */}
       <section style={{ backgroundColor: "var(--cream)" }}>
         <div className="container-narrow page-section">
-          <p className="mb-5 text-[12px] font-semibold uppercase tracking-[0.18em]" style={{ color: "var(--navy)" }}>
+          <p
+            className="mb-5 text-[12px] font-semibold uppercase tracking-[0.18em]"
+            style={{ color: "var(--navy)" }}
+          >
             Research
           </p>
-          <h1>Inquiry across management and the social sciences</h1>
-          <p className="mt-5 max-w-2xl text-[13px] leading-[1.7]">
-            Peer-reviewed publications, book chapters and conference contributions exploring
-            organisational behaviour, leadership, pedagogy and research methodology.
+          <h1>Research and Publications</h1>
+          <p className="mt-6 max-w-3xl text-[13px] leading-[1.7]">
+            My research spans consumer behaviour, retail management, digital marketing, and
+            sustainability. I have 45+ publications including 14 in Scopus and Web of Science
+            indexed journals, 206+ citations, an h-index of 7, and an i10-index of 4.
           </p>
+          <div className="mt-8">
+            <a
+              href="https://scholar.google.com/citations?user=2Ju3wFoAAAAJ&hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-navy"
+            >
+              View Full Publication List
+            </a>
+          </div>
         </div>
       </section>
 
-      <section className="bg-white">
-        <div className="container-narrow page-section">
-          <h2 className="section-title">Research interests</h2>
-          <ul className="grid gap-3 md:grid-cols-2 max-w-3xl">
-            {interests.map((i) => (
-              <li key={i} className="text-[13px]" style={{ borderLeft: "2px solid var(--navy)", paddingLeft: "12px" }}>
-                {i}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section style={{ backgroundColor: "var(--cream)" }}>
-        <div className="container-narrow page-section">
-          <h2 className="section-title">Selected publications</h2>
-          <ul className="space-y-4">
-            {publications.map((p) => (
-              <li key={p.title} className="cream-card">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: "var(--navy)" }}>
-                  {p.type}
-                </p>
-                <p className="mt-2 text-[14px] font-medium" style={{ color: "var(--navy)" }}>{p.title}</p>
-                <p className="mt-1 text-[12px]">{p.venue}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="bg-white">
-        <div className="container-narrow page-section">
-          <h2 className="section-title">Profiles</h2>
-          <ul className="space-y-2 max-w-3xl">
-            <li>
-              <a href="https://scholar.google.com/citations?user=2Ju3wFoAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" className="text-[13px] underline-offset-4 hover:underline">
-                Google Scholar →
-              </a>
-            </li>
-            <li>
-              <a href="https://orcid.org/0000-0002-1719-023X" target="_blank" rel="noopener noreferrer" className="text-[13px] underline-offset-4 hover:underline">
-                ORCID →
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      {/* Themed sections */}
+      {themes.map((theme) => (
+        <section
+          key={theme.heading}
+          style={{
+            backgroundColor: theme.bg === "cream" ? "var(--cream)" : "var(--white, #ffffff)",
+          }}
+          className={theme.bg === "white" ? "bg-white" : ""}
+        >
+          <div className="container-narrow page-section">
+            <h2 className="section-title">{theme.heading}</h2>
+            <div className="grid gap-5 md:grid-cols-2">
+              {theme.pubs.map((p, i) => (
+                <PubCard key={i} pub={p} />
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
     </>
   );
 }
