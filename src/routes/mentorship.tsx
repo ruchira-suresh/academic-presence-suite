@@ -1,4 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
+import {
+  GraduationCap,
+  LineChart,
+  BookMarked,
+  Mic,
+  Users,
+  Briefcase,
+} from "lucide-react";
 
 export const Route = createFileRoute("/mentorship")({
   head: () => ({
@@ -21,12 +29,36 @@ export const Route = createFileRoute("/mentorship")({
 });
 
 const helpAreas = [
-  "Thesis and dissertation guidance at postgraduate level",
-  "Research design, methodology, and data analysis",
-  "Preparing work for publication in peer-reviewed journals",
-  "Conference paper development and presentation preparation",
-  "Faculty development in outcome-based education and academic writing",
-  "Career guidance for students entering management roles",
+  {
+    icon: GraduationCap,
+    title: "Thesis and Dissertation",
+    text: "Guidance at postgraduate level from proposal to final submission.",
+  },
+  {
+    icon: LineChart,
+    title: "Research Design",
+    text: "Methodology, data analysis, and empirical framework support.",
+  },
+  {
+    icon: BookMarked,
+    title: "Publication Support",
+    text: "Preparing and positioning work for peer-reviewed journals.",
+  },
+  {
+    icon: Mic,
+    title: "Conference Preparation",
+    text: "Developing and presenting research papers at academic conferences.",
+  },
+  {
+    icon: Users,
+    title: "Faculty Development",
+    text: "Outcome-based education, academic writing, and pedagogy.",
+  },
+  {
+    icon: Briefcase,
+    title: "Career Guidance",
+    text: "Mentoring students entering management and academic careers.",
+  },
 ];
 
 const testimonials = [
@@ -62,22 +94,29 @@ function MentorshipPage() {
         </div>
       </section>
 
-      {/* What I Can Help With */}
+      {/* What I Can Help With — card grid */}
       <section className="bg-white">
         <div className="container-narrow page-section">
           <h2 className="section-title">What I Can Help With</h2>
-          <div className="max-w-3xl">
-            <ul style={{ borderTop: "0.5px solid var(--border-subtle)" }}>
-              {helpAreas.map((a) => (
-                <li
-                  key={a}
-                  className="py-4 text-[13px]"
-                  style={{ borderBottom: "0.5px solid var(--border-subtle)" }}
-                >
-                  {a}
-                </li>
-              ))}
-            </ul>
+          <div className="grid gap-5 md:grid-cols-2">
+            {helpAreas.map((a) => {
+              const Icon = a.icon;
+              return (
+                <article key={a.title} className="cream-card">
+                  <Icon
+                    aria-hidden="true"
+                    width={28}
+                    height={28}
+                    strokeWidth={1.5}
+                    style={{ color: "var(--navy)" }}
+                  />
+                  <h3 className="mt-5 text-[15px]" style={{ color: "var(--navy)" }}>
+                    {a.title}
+                  </h3>
+                  <p className="mt-2 text-[13px] leading-[1.6]">{a.text}</p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
